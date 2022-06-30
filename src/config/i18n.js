@@ -1,10 +1,11 @@
-import { init } from 'i18next';
+import i18next from 'i18next';
+import { initReactI18next } from 'react-i18next';
 
 function requireAll(requireContext) {
   return requireContext.keys().map(requireContext);
 }
 
-init({
+i18next.use(initReactI18next).init({
   lng: 'es',
   initImmediate: false
 });

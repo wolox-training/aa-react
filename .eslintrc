@@ -1,8 +1,14 @@
 {
-  "extends": ["wolox-react", "@wolox/eslint-config-typescript"],
-    "settings": {
-      "react": {
-      "version": "detect"
-    }
+  "extends": [
+    "@wolox/eslint-config",
+    "@wolox/eslint-config-react",
+    "@wolox/eslint-config-typescript",
+    "plugin:testing-library/react"
+  ],
+  "plugins": ["testing-library"],
+  "settings": {
+    "react": { "version": "detect" },
+    "prettier/prettier": ["error", { "endOfLine": "auto" }],
+    "include": ["src"]
   }
 }

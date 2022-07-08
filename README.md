@@ -1,5 +1,14 @@
 This project was bootstrapped with [REACT-BOOTSTRAP-WOLOX](https://github.com/Wolox/react-bootstrap).
 
+## Requirements
+
+- Node v14.17.3
+- npm v6.14.13
+
+If necessary "nvm" can be useful to manage several node versions seamlessly. Check it out [here](https://github.com/nvm-sh/nvm)
+
+---
+
 ## Screens
 
 This are the screens you can to choose for your app.

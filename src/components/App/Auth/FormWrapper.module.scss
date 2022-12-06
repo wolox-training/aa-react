@@ -1,0 +1,14 @@
+@import '../../../scss/variables/colors';
+
+.container {
+  align-items: center;
+  background-color: $grayBrand;
+  border-top: 8px solid $blueBrand;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  .logo {
+    margin: 40px 0;
+  }
+}

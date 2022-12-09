@@ -1,14 +1,15 @@
 import { UseFormRegister } from 'react-hook-form';
 
+import { InputNames, InputTypes } from '../../../types/form';
 import { IFormValues } from '../../../interfaces/form';
 
 import styles from './Input.module.scss';
 
 interface Props {
-  name: 'name' | 'lastName' | 'email' | 'password' | 'confirmPassword';
+  name: InputNames;
   label: string;
   register: UseFormRegister<IFormValues>;
-  type?: 'text' | 'number' | 'password' | 'email';
+  type?: InputTypes;
 }
 
 function Input({ name, label, register, type = 'text' }: Props) {

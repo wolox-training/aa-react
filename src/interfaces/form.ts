@@ -1,3 +1,5 @@
+import { InputNames, InputTypes } from '../types/form';
+
 export interface IFormValues {
   name: string;
   lastName: string;
@@ -7,7 +9,7 @@ export interface IFormValues {
 }
 
 export interface IFormMetadata {
-  name: 'name' | 'lastName' | 'email' | 'password' | 'confirmPassword';
-  type: 'number' | 'text' | 'password' | 'email';
+  name: InputNames;
+  type: InputTypes;
   label: string;
 }

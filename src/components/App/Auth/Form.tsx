@@ -8,14 +8,26 @@ import styles from './Form.module.scss';
 import Input from './Input';
 
 function Form() {
-  const { register, handleSubmit } = useForm<IFormValues>();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm<IFormValues>();
 
   const onSubmit: SubmitHandler<IFormValues> = (data) => {
     console.log(data);
   };
 
-  const formInputs = signUpFormStructure.map(({ label, name, type }) => (
-    <Input key={name} name={name} label={label} type={type} register={register} />
+  const formInputs = signUpFormStructure.map(({ label, name, type, pattern }) => (
+    <Input
+      key={name}
+      name={name}
+      label={label}
+      type={type}
+      register={register}
+      errors={errors}
+      pattern={pattern}
+    />
   ));
 
   return (

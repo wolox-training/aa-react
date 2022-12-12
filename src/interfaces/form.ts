@@ -12,4 +12,5 @@ export interface IFormMetadata {
   name: InputNames;
   type: InputTypes;
   label: string;
+  pattern?: RegExp;
 }

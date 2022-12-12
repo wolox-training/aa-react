@@ -1,0 +1,51 @@
+@import '../../../scss/variables/colors';
+
+.form {
+  margin-bottom: 30px;
+  width: 80%;
+
+  .actions {
+    display: flex;
+    flex-direction: column;
+    
+    .signUp {
+      background-color: $greenBrand;
+      border: 2px solid $greenBrand;
+      border-radius: 8px;
+      color: $white;
+      cursor: pointer;
+      font-size: 15px;
+      padding: 10px;
+      position: relative;
+      
+      &:hover {
+        background-color: transparent;
+        color: $greenBrand;
+      }
+      
+      &::after {
+        border-bottom: 2px solid $gray;
+        content: '';
+        position: absolute;
+        right: 0;
+        top: 50px;
+        width: 100%;
+      }
+    }
+    
+    .login {
+      border: 2px solid $greenBrand;
+      border-radius: 8px;
+      color: $greenBrand;
+      cursor: pointer;
+      font-size: 15px;
+      margin-top: 40px;
+      padding: 10px;
+
+      &:hover {
+        background-color: $greenBrand;
+        color: $white;
+      }
+    }
+  }
+}

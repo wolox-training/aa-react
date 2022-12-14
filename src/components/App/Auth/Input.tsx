@@ -1,4 +1,5 @@
 import { FieldErrorsImpl, UseFormRegister } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 
 import { InputNames, InputTypes } from '../../../types/form';
 import { IFormValues } from '../../../interfaces/form';
@@ -15,6 +16,7 @@ interface Props {
 }
 
 function Input({ name, label, register, errors, pattern, type = 'text' }: Props) {
+  const { t } = useTranslation();
   const validations: any = {
     required: { value: true, message: `${label} is required` }
   };
@@ -26,7 +28,7 @@ function Input({ name, label, register, errors, pattern, type = 'text' }: Props)
   return (
     <div className={styles.group}>
       <label className={styles.label} htmlFor={name}>
-        {label}
+        {t(`SignUp:${name}`)}
       </label>
       <input
         className={styles.input}

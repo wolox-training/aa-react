@@ -1,4 +1,5 @@
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 
 import { IFormValues } from '../../../interfaces/form';
 import { signUpFormStructure } from '../../../constants/form';
@@ -13,6 +14,7 @@ function Form() {
     handleSubmit,
     formState: { errors }
   } = useForm<IFormValues>();
+  const { t } = useTranslation();
 
   const onSubmit: SubmitHandler<IFormValues> = (data) => {
     console.log(data);
@@ -36,10 +38,10 @@ function Form() {
         {formInputs}
         <div className={styles.actions}>
           <button className={styles.signUp} type="submit">
-            Sign Up
+            {t('SignUp:signUp')}
           </button>
           <button className={styles.login} type="button">
-            Login
+            {t('SignUp:login')}
           </button>
         </div>
       </form>

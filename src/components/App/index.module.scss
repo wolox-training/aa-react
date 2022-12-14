@@ -1,0 +1,21 @@
+.container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  .language {
+    cursor: pointer;
+    display: flex;
+    margin: 0 auto;
+
+    .logo {
+      margin: 5px;
+      width: 40px;
+    }
+
+    .selector {
+      cursor: pointer;
+    }
+  }
+}

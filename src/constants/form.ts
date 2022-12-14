@@ -14,7 +14,8 @@ export const signUpFormStructure: IFormMetadata[] = [
   {
     name: 'email',
     label: 'Email',
-    type: 'email'
+    type: 'email',
+    pattern: /^\S+@\S+\.\S+$/
   },
   {
     name: 'password',

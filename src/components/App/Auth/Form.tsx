@@ -1,8 +1,10 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
 import { IFormValues } from '../../../interfaces/form';
 import { signUpFormStructure } from '../../../constants/form';
+import { registerUser } from '../../../services/ApiService';
 
 import FormWrapper from './FormWrapper';
 import styles from './Form.module.scss';
@@ -16,8 +18,17 @@ function Form() {
   } = useForm<IFormValues>();
   const { t } = useTranslation();
 
-  const onSubmit: SubmitHandler<IFormValues> = (data) => {
-    console.log(data);
+  const onSubmit: SubmitHandler<IFormValues> = async (data: IFormValues) => {
+    const request = await registerUser(data);
+
+    if (!request.ok) {
+      return null;
+    }
+
+    const response = await request.data;
+
+    console.log(response);
+    return null;
   };
 
   const formInputs = signUpFormStructure.map(({ label, name, type, pattern }) => (

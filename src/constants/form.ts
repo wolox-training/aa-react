@@ -2,7 +2,7 @@ import { IFormMetadata } from '../interfaces/form';
 
 export const signUpFormStructure: IFormMetadata[] = [
   {
-    name: 'name',
+    name: 'firstName',
     label: 'Nombre',
     type: 'text'
   },

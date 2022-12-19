@@ -1,6 +1,9 @@
 import { create } from 'apisauce';
+import { SnakecaseSerializer } from 'cerealizr';
 
-import { IRequestSignUp } from '../interfaces/form';
+import { IFormValues } from '../interfaces/form';
+
+const serializer = new SnakecaseSerializer();
 
 const api = create({
   baseURL: 'https://books-training-rails.herokuapp.com/api/v1',
@@ -9,4 +12,13 @@ const api = create({
   }
 });
 
-export const registerUser = (body: IRequestSignUp) => api.post('/users', body);
+api.addRequestTransform((request) => {
+  if (request.data) {
+    request.data = serializer.serialize(request.data);
+  }
+  if (request.headers) {
+    request.headers = serializer.serialize(request.headers);
+  }
+});
+
+export const registerUser = (body: IFormValues) => api.post('/users', body);

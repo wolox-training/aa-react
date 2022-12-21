@@ -1,9 +1,9 @@
 import { InputNames, InputTypes } from '../types/form';
 
 export interface IFormValues {
-  name: string;
-  lastName: string;
   email: string;
+  firstName: string;
+  lastName: string;
   password: string;
   confirmPassword: string;
 }

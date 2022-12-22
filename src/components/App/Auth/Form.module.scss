@@ -49,3 +49,14 @@
     }
   }
 }
+
+.error {
+  color: red;
+  padding: 5px;
+  text-align: left;
+  font-size: 15px;
+
+  &::before {
+    content: '⚠  ';
+  }
+}

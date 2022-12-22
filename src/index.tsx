@@ -1,5 +1,6 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
+import { QueryClient, QueryClientProvider } from 'react-query';
 
 import App from 'components/App';
 import 'config/i18n';
@@ -10,9 +11,12 @@ import reportWebVitals from './reportWebVitals';
 const root = createRoot(document.getElementById('root')!);
 
 const renderApp = () => {
+  const queryClient = new QueryClient();
   root.render(
     <React.StrictMode>
-      <App />
+      <QueryClientProvider client={queryClient}>
+        <App />
+      </QueryClientProvider>
     </React.StrictMode>
   );
 };

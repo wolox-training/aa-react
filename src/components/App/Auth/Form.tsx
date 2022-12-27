@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/naming-convention */
-import { SubmitHandler, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
+import { useMutation } from 'react-query';
 
 import { IFormValues } from '../../../interfaces/form';
 import { signUpFormStructure } from '../../../constants/form';
@@ -18,18 +19,10 @@ function Form() {
   } = useForm<IFormValues>();
   const { t } = useTranslation();
 
-  const onSubmit: SubmitHandler<IFormValues> = async (data: IFormValues) => {
-    const request = await registerUser(data);
-
-    if (!request.ok) {
-      return null;
-    }
-
-    const response = await request.data;
-
-    console.log(response);
-    return null;
-  };
+  const { mutate, isLoading, isError, isSuccess, data } = useMutation(registerUser, {
+    onSuccess: (response) => console.log('good:', response),
+    onError: (error) => console.log('bad: ', error)
+  });
 
   const formInputs = signUpFormStructure.map(({ label, name, type, pattern }) => (
     <Input
@@ -45,17 +38,18 @@ function Form() {
 
   return (
     <FormWrapper>
-      <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+      <form className={styles.form} onSubmit={handleSubmit((request) => mutate(request))}>
         {formInputs}
         <div className={styles.actions}>
           <button className={styles.signUp} type="submit">
-            {t('SignUp:signUp')}
+            {isLoading ? 'Loading...' : t('SignUp:signUp')}
           </button>
-          <button className={styles.login} type="button">
+          <button className={styles.login} type="button" disabled={isLoading}>
             {t('SignUp:login')}
           </button>
         </div>
       </form>
+      {(isError || (isSuccess && !data.ok)) && <p className={styles.error}>{t('SignUp:isError')}</p>}
     </FormWrapper>
   );
 }

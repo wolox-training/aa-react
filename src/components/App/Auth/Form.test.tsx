@@ -1,13 +1,20 @@
 import { screen, render, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { QueryClientProvider, QueryClient } from 'react-query';
 
 import { signUpFormStructure } from '../../../constants/form';
 
 import Form from './Form';
 
 describe('Form', () => {
+  const queryClient = new QueryClient();
+
   beforeEach(() => {
-    render(<Form />);
+    render(
+      <QueryClientProvider client={queryClient}>
+        <Form />
+      </QueryClientProvider>
+    );
   });
 
   it('should not sent the info if there is empty inputs', () => {

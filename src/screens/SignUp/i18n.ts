@@ -1,8 +1,8 @@
 import i18next from 'i18next';
 
 i18next.addResources('es', 'SignUp', {
-  signUp: 'Registrar',
-  login: 'Iniciar sesión',
+  optionOne: 'Registrar',
+  optionTwo: 'Iniciar sesión',
   firstName: 'Nombre',
   lastName: 'Apellido',
   email: 'Correo',
@@ -13,8 +13,8 @@ i18next.addResources('es', 'SignUp', {
 });
 
 i18next.addResources('en', 'SignUp', {
-  signUp: 'Sign Up',
-  login: 'Login',
+  optionOne: 'Sign Up',
+  optionTwo: 'Login',
   firstName: 'Name',
   lastName: 'Last name',
   email: 'Email',

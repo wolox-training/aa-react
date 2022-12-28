@@ -4,7 +4,7 @@ import { SnakecaseSerializer } from 'cerealizr';
 const serializer = new SnakecaseSerializer();
 
 const api = create({
-  baseURL: 'https://books-training-rails.herokuapp.com/api/v1',
+  baseURL: 'https://private-deb86-wbooksiostraining.apiary-mock.com',
   headers: {
     contentType: 'application/json'
   }

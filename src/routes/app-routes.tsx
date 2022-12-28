@@ -1,14 +1,23 @@
 import SignUp from '../screens/SignUp/index';
 import Login from '../screens/Login/index';
+import App from '../components/App';
 
 const routes = [
   {
     path: '/',
-    element: <Login />
+    element: (
+      <App>
+        <Login />
+      </App>
+    )
   },
   {
     path: '/sign_up',
-    element: <SignUp />
+    element: (
+      <App>
+        <SignUp />
+      </App>
+    )
   }
 ];
 

@@ -1,21 +1,25 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
-import App from 'components/App';
+// import App from 'components/App';
 import 'config/i18n';
 import 'scss/application.scss';
 
 import reportWebVitals from './reportWebVitals';
+import routes from './routes/app-routes';
 
 const root = createRoot(document.getElementById('root')!);
+
+const router = createBrowserRouter(routes);
 
 const renderApp = () => {
   const queryClient = new QueryClient();
   root.render(
     <React.StrictMode>
       <QueryClientProvider client={queryClient}>
-        <App />
+        <RouterProvider router={router} />
       </QueryClientProvider>
     </React.StrictMode>
   );

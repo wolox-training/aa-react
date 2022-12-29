@@ -1,4 +1,19 @@
 .login {
   margin: 50px auto 5px auto;
-  width: 350px
+  width: 350px;
+
+  .form {
+    width: 80%;
+  }
+
+  .error {
+    color: red;
+    padding: 5px;
+    text-align: left;
+    font-size: 15px;
+  
+    &::before {
+      content: '⚠  ';
+    }
+  }
 }

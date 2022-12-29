@@ -1,35 +1,25 @@
 /* eslint-disable @typescript-eslint/naming-convention */
-import { useForm } from 'react-hook-form';
+import { UseFormRegister, FieldErrorsImpl } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import { useMutation } from 'react-query';
+import { useNavigate } from 'react-router-dom';
 
-import { IFormValues, IFormMetadata } from '../../../interfaces/form';
-import { registerUser, loginUser } from '../../../services/ApiService';
+import { IBaseForm, IFormValues, IFormMetadata } from '../../../interfaces/form';
 
-import FormWrapper from './FormWrapper';
 import styles from './Form.module.scss';
 import Input from './Input';
 
 type Props = {
   formData: IFormMetadata[];
   screenKey: 'Login' | 'SignUp';
+  register: UseFormRegister<any>;
+  isLoading: boolean;
+  errors: Partial<FieldErrorsImpl<IBaseForm | IFormValues>>;
+  redirectParam: string;
 };
 
-function Form({ formData, screenKey }: Props) {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors }
-  } = useForm<IFormValues>();
+function Form({ formData, screenKey, register, isLoading, errors, redirectParam }: Props) {
   const { t } = useTranslation();
-
-  const { mutate, isLoading, isError, isSuccess, data } = useMutation(
-    screenKey === 'SignUp' ? registerUser : loginUser,
-    {
-      onSuccess: (response) => console.log('good:', response),
-      onError: (error) => console.log('bad: ', error)
-    }
-  );
+  const navigate = useNavigate();
 
   const formInputs = formData.map(({ label, name, type, pattern }) => (
     <Input
@@ -43,21 +33,22 @@ function Form({ formData, screenKey }: Props) {
     />
   ));
 
+  const redirectHandler = () => {
+    navigate(redirectParam);
+  };
+
   return (
-    <FormWrapper>
-      <form className={styles.form} onSubmit={handleSubmit((request) => mutate(request))}>
-        {formInputs}
-        <div className={styles.actions}>
-          <button className={styles.signUp} type="submit">
-            {isLoading ? 'Loading...' : t(`${screenKey}:optionOne`)}
-          </button>
-          <button className={styles.login} type="button" disabled={isLoading}>
-            {t(`${screenKey}:optionTwo`)}
-          </button>
-        </div>
-      </form>
-      {(isError || (isSuccess && !data.ok)) && <p className={styles.error}>{t(`${screenKey}:isError`)}</p>}
-    </FormWrapper>
+    <div className={styles.form}>
+      {formInputs}
+      <div className={styles.actions}>
+        <button className={styles.signUp} type="submit">
+          {isLoading ? 'Loading...' : t(`${screenKey}:optionOne`)}
+        </button>
+        <button onClick={redirectHandler} className={styles.login} type="button" disabled={isLoading}>
+          {t(`${screenKey}:optionTwo`)}
+        </button>
+      </div>
+    </div>
   );
 }
 

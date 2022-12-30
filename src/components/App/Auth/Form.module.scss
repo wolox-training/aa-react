@@ -2,7 +2,6 @@
 
 .form {
   margin-bottom: 30px;
-  width: 80%;
 
   .actions {
     display: flex;
@@ -47,16 +46,5 @@
         color: $white;
       }
     }
-  }
-}
-
-.error {
-  color: red;
-  padding: 5px;
-  text-align: left;
-  font-size: 15px;
-
-  &::before {
-    content: '⚠  ';
   }
 }

@@ -1,30 +1,27 @@
 /* eslint-disable @typescript-eslint/naming-convention */
-import { useForm } from 'react-hook-form';
+import { UseFormRegister, FieldErrorsImpl } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import { useMutation } from 'react-query';
+import { useNavigate } from 'react-router-dom';
 
-import { IFormValues } from '../../../interfaces/form';
-import { signUpFormStructure } from '../../../constants/form';
-import { registerUser } from '../../../services/ApiService';
+import { IBaseForm, IFormValues, IFormMetadata } from '../../../interfaces/form';
 
-import FormWrapper from './FormWrapper';
 import styles from './Form.module.scss';
 import Input from './Input';
 
-function Form() {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors }
-  } = useForm<IFormValues>();
+type Props = {
+  formData: IFormMetadata[];
+  screenKey: 'Login' | 'SignUp';
+  register: UseFormRegister<any>;
+  isLoading: boolean;
+  errors: Partial<FieldErrorsImpl<IBaseForm | IFormValues>>;
+  redirectParam: string;
+};
+
+function Form({ formData, screenKey, register, isLoading, errors, redirectParam }: Props) {
   const { t } = useTranslation();
+  const navigate = useNavigate();
 
-  const { mutate, isLoading, isError, isSuccess, data } = useMutation(registerUser, {
-    onSuccess: (response) => console.log('good:', response),
-    onError: (error) => console.log('bad: ', error)
-  });
-
-  const formInputs = signUpFormStructure.map(({ label, name, type, pattern }) => (
+  const formInputs = formData.map(({ label, name, type, pattern }) => (
     <Input
       key={name}
       name={name}
@@ -36,21 +33,22 @@ function Form() {
     />
   ));
 
+  const redirectHandler = () => {
+    navigate(redirectParam);
+  };
+
   return (
-    <FormWrapper>
-      <form className={styles.form} onSubmit={handleSubmit((request) => mutate(request))}>
-        {formInputs}
-        <div className={styles.actions}>
-          <button className={styles.signUp} type="submit">
-            {isLoading ? 'Loading...' : t('SignUp:signUp')}
-          </button>
-          <button className={styles.login} type="button" disabled={isLoading}>
-            {t('SignUp:login')}
-          </button>
-        </div>
-      </form>
-      {(isError || (isSuccess && !data.ok)) && <p className={styles.error}>{t('SignUp:isError')}</p>}
-    </FormWrapper>
+    <div className={styles.form}>
+      {formInputs}
+      <div className={styles.actions}>
+        <button className={styles.signUp} type="submit">
+          {isLoading ? 'Loading...' : t(`${screenKey}:optionOne`)}
+        </button>
+        <button onClick={redirectHandler} className={styles.login} type="button" disabled={isLoading}>
+          {t(`${screenKey}:optionTwo`)}
+        </button>
+      </div>
+    </div>
   );
 }
 

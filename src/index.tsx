@@ -9,6 +9,7 @@ import 'scss/application.scss';
 
 import reportWebVitals from './reportWebVitals';
 import routes from './routes/app-routes';
+import App from './components/App';
 
 const root = createRoot(document.getElementById('root')!);
 
@@ -19,7 +20,9 @@ const renderApp = () => {
   root.render(
     <React.StrictMode>
       <QueryClientProvider client={queryClient}>
-        <RouterProvider router={router} />
+        <App>
+          <RouterProvider router={router} />
+        </App>
       </QueryClientProvider>
     </React.StrictMode>
   );

@@ -1,18 +1,19 @@
-import React from 'react';
-import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
+// import { useTranslation } from 'react-i18next';
 
-import logo from './assets/logo.svg';
+import logo from '../../assets/wolox-brand.png';
+
 import styles from './styles.module.scss';
 
 function Home() {
-  const { t } = useTranslation();
+  // const { t } = useTranslation();
   return (
-    <div className={styles.app}>
-      <header className={styles.appHeader}>
-        <img src={logo} className={styles.appLogo} alt={t('Home:logoAlt')} />
-        <p className={styles.text}>{t('Home:welcome')}</p>
-      </header>
-    </div>
+    <nav className={styles.navbar}>
+      <img src={logo} alt="wolox" />
+      <Link className={styles.logout} to="/">
+        Logout
+      </Link>
+    </nav>
   );
 }
 

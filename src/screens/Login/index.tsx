@@ -22,7 +22,7 @@ function Login() {
   const navigate = useNavigate();
 
   const { mutate, isLoading, isError, isSuccess, data } = useMutation(loginUser, {
-    onSuccess: (response: any) => {
+    onSuccess: (response) => {
       LocalStorage.setValue('token', response?.data?.token);
       navigate('/home');
     },

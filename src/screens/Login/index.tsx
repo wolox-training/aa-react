@@ -1,12 +1,14 @@
 import { useForm } from 'react-hook-form';
 import { useMutation } from 'react-query';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 
 import { loginFormStructure } from '../../constants/form';
 import Form from '../../components/App/Auth/Form';
 import FormWrapper from '../../components/App/Auth/FormWrapper';
 import { loginUser } from '../../services/ApiService';
 import { IBaseForm } from '../../interfaces/form';
+import LocalStorage from '../../services/LocalStorageService';
 
 import styles from './styles.module.scss';
 
@@ -16,13 +18,16 @@ function Login() {
     handleSubmit,
     formState: { errors }
   } = useForm<IBaseForm>();
+  const { t } = useTranslation();
+  const navigate = useNavigate();
 
   const { mutate, isLoading, isError, isSuccess, data } = useMutation(loginUser, {
-    onSuccess: (response) => console.log('good:', response),
+    onSuccess: (response) => {
+      LocalStorage.setValue('token', response?.data?.token);
+      navigate('/home');
+    },
     onError: (error) => console.log('bad: ', error)
   });
-
-  const { t } = useTranslation();
 
   return (
     <section className={styles.login}>

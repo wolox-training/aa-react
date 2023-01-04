@@ -1,12 +1,13 @@
 import { FieldErrorsImpl, UseFormRegister } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import { InputNames, InputTypes } from '../../../types/form';
+import { InputNames, InputTypes, ScreenKey } from '../../../types/form';
 import { IFormValues } from '../../../interfaces/form';
 
 import styles from './Input.module.scss';
 
 interface Props {
+  screenKey: ScreenKey;
   name: InputNames;
   label: string;
   register: UseFormRegister<IFormValues>;
@@ -15,7 +16,7 @@ interface Props {
   type?: InputTypes;
 }
 
-function Input({ name, label, register, errors, pattern, type = 'text' }: Props) {
+function Input({ screenKey, name, label, register, errors, pattern, type = 'text' }: Props) {
   const { t } = useTranslation();
   const validations: any = {
     required: { value: true, message: `${label} is required` }
@@ -28,7 +29,7 @@ function Input({ name, label, register, errors, pattern, type = 'text' }: Props)
   return (
     <div className={styles.group}>
       <label className={styles.label} htmlFor={name}>
-        {t(`SignUp:${name}`)}
+        {t(`${screenKey}:${name}`)}
       </label>
       <input
         className={styles.input}

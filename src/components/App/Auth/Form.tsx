@@ -4,13 +4,14 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
 import { IBaseForm, IFormValues, IFormMetadata } from '../../../interfaces/form';
+import { ScreenKey } from '../../../types/form';
 
 import styles from './Form.module.scss';
 import Input from './Input';
 
 type Props = {
   formData: IFormMetadata[];
-  screenKey: 'Login' | 'SignUp';
+  screenKey: ScreenKey;
   register: UseFormRegister<any>;
   isLoading: boolean;
   errors: Partial<FieldErrorsImpl<IBaseForm | IFormValues>>;
@@ -23,6 +24,7 @@ function Form({ formData, screenKey, register, isLoading, errors, redirectParam 
 
   const formInputs = formData.map(({ label, name, type, pattern }) => (
     <Input
+      screenKey={screenKey}
       key={name}
       name={name}
       label={label}

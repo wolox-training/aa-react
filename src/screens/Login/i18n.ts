@@ -6,7 +6,7 @@ i18next.addResources('es', 'Login', {
   email: 'Correo',
   password: 'Contraseña',
   isInvalid: 'es invalido.',
-  isError: 'A ocurrido un error en el registro, porfavor intenta de nuevo mas tarde'
+  isError: 'A ocurrido un error al iniciar sesión, porfavor intenta de nuevo mas tarde'
 });
 
 i18next.addResources('en', 'Login', {

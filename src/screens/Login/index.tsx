@@ -23,8 +23,10 @@ function Login() {
 
   const { mutate, isLoading, isError, isSuccess, data } = useMutation(loginUser, {
     onSuccess: (response) => {
-      LocalStorage.setValue('token', response?.data?.token);
-      navigate('/home');
+      if (response.ok) {
+        LocalStorage.setValue('token', response?.data?.token);
+        navigate('/home');
+      }
     },
     onError: (error) => console.log('bad: ', error)
   });

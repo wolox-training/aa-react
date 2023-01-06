@@ -2,18 +2,33 @@ import SignUp from '../screens/SignUp';
 import Login from '../screens/Login';
 import Home from '../screens/Home';
 
+import PrivateRoute from './private-route';
+import PublicRoute from './public-route';
+
 const routes = [
   {
     path: '/',
-    element: <Login />
+    element: (
+      <PublicRoute>
+        <Login />
+      </PublicRoute>
+    )
   },
   {
     path: '/sign_up',
-    element: <SignUp />
+    element: (
+      <PublicRoute>
+        <SignUp />
+      </PublicRoute>
+    )
   },
   {
-    path: 'home',
-    element: <Home />
+    path: '/home',
+    element: (
+      <PrivateRoute>
+        <Home />
+      </PrivateRoute>
+    )
   }
 ];
 

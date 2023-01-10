@@ -1,0 +1,78 @@
+@import '../../../scss/variables/colors';
+
+.container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 80px;
+  width: 80%;
+
+  .back {
+    color: black;
+    font-size: 20px;
+    position: relative;
+    margin-left: 32px;
+    cursor: pointer;
+
+    &::before {
+      content: url('/assets/back-arrow.png');
+      position: absolute;
+      left: -30px;
+      top: -5px;
+    }
+  }
+
+  .card {
+    display: flex;
+    margin-top: 100px;
+    width: 100%;
+    max-width: 900px;
+    box-shadow: 4px 4px 10px 0 rgba(0,0,0,0.5);
+    margin-bottom: 20px;
+    position: relative;
+
+    &::after {
+      content: url('/assets/badge.png');
+      position: absolute;
+      left: 175px;
+    }
+
+    .image {
+      height: 368px;
+      padding: 25px;
+      width: 260px;
+    }
+
+    .details {
+      padding: 25px;
+
+      .title {
+        font-size: 32px;
+        font-weight: bold;
+        line-height: unset;
+        color: black;
+        padding-bottom: 12px;
+        border-bottom: 5px solid $greenBrand;
+
+        .genre {
+          color: gray;
+          font-size: 30px;
+        }
+      }
+
+      .about {
+        margin: 36px 0 36px 0;
+        
+        .label {
+          font-size: 20px;
+          color: black;
+          font-weight: bold;
+        }
+
+        .value {
+          font-size: 20px;
+          margin-left: 10px;
+        }
+      }
+    }
+  }
+}

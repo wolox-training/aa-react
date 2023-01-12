@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 import { Book } from '../../../interfaces/books';
 import fallback from '../../../assets/book-cover-fallback.png';
 
@@ -9,11 +11,11 @@ type Props = {
 
 function BooksList({ books }: Props) {
   const bookList = books.map(({ id, title, author }) => (
-    <div className={styles.book} key={id}>
+    <Link to={`/books/${id}`} className={styles.book} key={id}>
       <img className={styles.preview} src={fallback} alt={title} />
       <h1 className={styles.title}>{title}</h1>
       <p className={styles.subtitle}>{author}</p>
-    </div>
+    </Link>
   ));
 
   return <section className={styles.container}>{bookList}</section>;

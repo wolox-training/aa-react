@@ -6,3 +6,4 @@ import { Book } from '../interfaces/books';
 export const registerUser = (body: IFormValues) => api.post('/users', body);
 export const loginUser = (body: IBaseForm) => api.post<ILoginResponse>('/login', body);
 export const booksList = () => api.get<Book[]>('/books');
+export const bookDetail = (bookId: number) => api.get<Book>(`/books/${bookId}`);

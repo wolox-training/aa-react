@@ -1,9 +1,11 @@
 import SignUp from '../screens/SignUp';
 import Login from '../screens/Login';
 import Home from '../screens/Home';
+import Detail from '../screens/Detail';
 
 import PrivateRoute from './private-route';
 import PublicRoute from './public-route';
+import { loader } from './book-loader';
 
 const routes = [
   {
@@ -29,6 +31,15 @@ const routes = [
         <Home />
       </PrivateRoute>
     )
+  },
+  {
+    path: 'books/:id',
+    element: (
+      <PrivateRoute>
+        <Detail />
+      </PrivateRoute>
+    ),
+    loader
   }
 ];
 
